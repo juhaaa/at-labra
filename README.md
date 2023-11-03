@@ -1,1 +1,3 @@
-# at-labra
+# Algoritmit ja tekoäly: harjoitustyö
+
+
