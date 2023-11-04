@@ -28,7 +28,7 @@ Koulutusohjelmani on tietojenkäsittelytieteen kandidaatti ja dokumentaatiossa j
 
 ## Lähteet
 
-[Tirakirja](https://www.cs.helsinki.fi/u/ahslaaks/tirakirja/)
-[Dijkstra wikipedia](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm)
-[JPS](http://users.cecs.anu.edu.au/~dharabor/data/papers/harabor-grastien-aaai11.pdf)
-[JPS, medium](https://dibyendu-biswas.medium.com/understanding-jump-point-search-jps-algorithm-554c99aab178)
+- [Tirakirja](https://www.cs.helsinki.fi/u/ahslaaks/tirakirja/)
+- [Dijkstra wikipedia](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm)
+- [JPS](http://users.cecs.anu.edu.au/~dharabor/data/papers/harabor-grastien-aaai11.pdf)
+- [JPS, medium](https://dibyendu-biswas.medium.com/understanding-jump-point-search-jps-algorithm-554c99aab178)
