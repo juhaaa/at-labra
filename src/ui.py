@@ -1,12 +1,15 @@
-from tkinter import IntVar, Frame, Button, Radiobutton, Label
+from tkinter import IntVar, Frame, Button, Radiobutton, Label, Entry
 from tkinter import filedialog, Tk
 from PIL import ImageTk, Image, ImageDraw
 from main_service import start_route_search
+from map_service import binary_map_to_matrix
 from config import map_dir_path
 
 class UI:
     def __init__(self, master):
         self.master = master
+        self.image = None
+        self.binary_grid = None
         self.start_coords = None
         self.finish_coords = None
         self.is_selecting_start = True
@@ -26,6 +29,8 @@ class UI:
         self.radio1.pack(ipady= 13, padx=10, pady=5)
         self.radio2.pack(ipady= 13, padx=10, pady=5)
         self.map_button.pack(ipady= 10, ipadx=2, padx=10, pady=5)
+        self.start_entry.pack(ipady= 10, ipadx=2, padx=10, pady=5)
+        self.finish_entry.pack(ipady= 10, ipadx=2, padx=10, pady=5)
         self.image.pack()
         
     def toolbar_init(self):
@@ -60,13 +65,15 @@ class UI:
             activebackground="lemonchiffon3")
         self.map_button = Button(
             self.toolbar,
-            text="MAP",
+            text="KARTTA",
             command=self.choose_image,
             bg="lemonchiffon2",
             highlightthickness = 0,
             bd = 0,
             width = 30,
             activebackground="lemonchiffon3")
+        self.start_entry = Entry(self.toolbar, width=30)
+        self.finish_entry = Entry(self.toolbar, width=30)
         
     def map_init(self):
         self.map = Frame(self.master, bg="goldenrod")
@@ -79,18 +86,24 @@ class UI:
             self.img = Image.open(file_path)
             self.photo_img = ImageTk.PhotoImage(self.img)
             self.image.config(image=self.photo_img)
+            self.binary_grid = binary_map_to_matrix(self.img)
         
     def coordinates_click(self, event):
         x, y = event.x, event.y
         if self.is_selecting_start:
             self.start_coords = (x, y)
             print(f"Alku: ({x}, {y})")
-            self.is_selecting_start = False    
+            self.is_selecting_start = False
+            self.start_entry.delete(0, 'end') 
+            self.start_entry.insert(0, f"Alku: ({x}, {y})") 
         else:
             self.finish_coords = (x, y)
             print(f"Loppu: ({x}, {y})")
             self.draw_coordinates(self.start_coords, "green", self.finish_coords, "red")
             self.is_selecting_start = True
+            self.finish_entry.delete(0, 'end')
+            self.finish_entry.insert(0, f"Loppu: ({x}, {y})")
+        
     
     def insert_coordinates():
         #koordinaatit käsin syötettynä
