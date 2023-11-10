@@ -2,9 +2,9 @@ from tkinter import IntVar, Frame, Button, Radiobutton, Label
 from tkinter import filedialog, Tk
 from PIL import ImageTk, Image, ImageDraw
 from main_service import start_route_search
+from config import map_dir_path
 
 class UI:
-
     def __init__(self, master):
         self.master = master
         self.start_coords = None
@@ -74,7 +74,7 @@ class UI:
         self.image.bind("<Button-1>", self.coordinates_click)
 
     def choose_image(self):
-        file_path = filedialog.askopenfilename(initialdir="map",filetypes=[("Png", "*.png")])
+        file_path = filedialog.askopenfilename(initialdir=map_dir_path,filetypes=[("Png", "*.png")])
         if file_path:
             self.img = Image.open(file_path)
             self.photo_img = ImageTk.PhotoImage(self.img)

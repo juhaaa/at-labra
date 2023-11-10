@@ -15,3 +15,6 @@ Aiheideat osiossa moodlessa painotettiin, että tämän aiheen kohdalla visualis
 ## Ensi viikolla
 
 - Tarkoitus on saada ohjelma toimimaan ainakin toisella algoritmilla ja kommentoida jo kirjoitettua koodia.
+
+## Käytetty aika
+- Tällä viikolla tein töitä projektin parissa n. 14 tuntia.

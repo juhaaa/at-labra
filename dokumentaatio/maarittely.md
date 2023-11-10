@@ -13,7 +13,7 @@ Työn aiheista mielenkiintoisimmaksi koin verkot ja polunetsinnän. Tarkoituksen
 * Jump Point Search
 > JPS tulee olemaan uuteen tutustumista tämän kurssin myötä.
 * Verkko ja sen muodostaminen
-> Verkkona täytynee käyttää JPS- algoritmin myötä ruudukkotyyppistä verkkoa. Liikkumisen kustannus on joka suuntaan sama ja solmulla voi olla maksimissaan 8 naapuria ja kulku maksimissaan yhtä moneen suuntaan. Verkkoon pitää voida merkitä solmut, joissa kulkeminen ei ole sallittua.
+> Verkkona täytynee käyttää JPS- algoritmin myötä ruudukkotyyppistä verkkoa. Liikkumisen kustannus ylös, alas, vasemmalle ja oikealle on 1. Diagonaalisessa suunnassa $\sqrt{2}$ .Solmulla voi olla maksimissaan 8 naapuria ja kulku maksimissaan yhtä moneen suuntaan. Verkkoon pitää voida merkitä solmut, joissa kulkeminen ei ole sallittua.
 
 ## Ohjelma syöte ja toiminta
 
