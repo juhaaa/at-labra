@@ -9,7 +9,7 @@ Työn aiheista mielenkiintoisimmaksi koin verkot ja polunetsinnän. Tarkoituksen
 ## Algoritmit ja tietorakenteet
 
 * Dijkstran- algoritmi
-> BFS/Dijkstra on jollain tapaa tuttu aikaisemmilta tietorakenteiden kursseilta. Toteutukseen löytyy hyvä apu aikaisemmasta kurssimonisteesta.
+> Dijkstra on jollain tapaa tuttu aikaisemmilta tietorakenteiden kursseilta. Toteutukseen löytyy hyvä apu aikaisemmasta kurssimonisteesta.
 * Jump Point Search
 > JPS tulee olemaan uuteen tutustumista tämän kurssin myötä.
 * Verkko ja sen muodostaminen
@@ -17,7 +17,7 @@ Työn aiheista mielenkiintoisimmaksi koin verkot ja polunetsinnän. Tarkoituksen
 
 ## Ohjelma syöte ja toiminta
 
-Ajatuksena on käyttää ohjelman syötteenä kurssin moodle- sivuilta löytyvän [linkin](https://www.movingai.com/benchmarks/street/index.html) karttoja png muotoisina. Ohjelmaan voi graafisen käyttöliittymän kautta tuoda kuvatiedoston. Vaatimuksena kartoille on (lähinnä linkin kuvien formaatin vuoksi), että ne ovat kaksivärisiä(0,0,0 ja 229,229,229) ja png- muodossa. Musta väri kuvaa aluetta jolla ei voi liikkua ja harmaa alue kuvaa vapaata kulkua. Png- muotoisesta kuvasta muodostetaan verkko niin, että 1 pikseli kuvaa yhtä solmua. Karttoja voi myös piirtää itse.
+Ajatuksena on käyttää ohjelman syötteenä kurssin moodle- sivuilta löytyvän [linkin](https://www.movingai.com/benchmarks/street/index.html) karttoja png muotoisina. Ohjelmaan voi graafisen käyttöliittymän kautta tuoda kuvatiedoston. Musta väri kuvaa aluetta jolla ei voi liikkua ja harmaa alue kuvaa vapaata kulkua. Png- muotoisesta kuvasta muodostetaan verkko niin, että 1 pikseli kuvaa yhtä solmua. Karttoja voi myös piirtää itse.
 
 Käyttöliittymän kautta käyttäjä valitsee lähtö- ja maalikoordinaatit, sekä käytettävän algoritmin. Ohjelma suorittaa reittihaun, kun käyttäjä valitsee "Start". Haun suorittamisen jälkeen ohjelma raportoi tulokset ja palauttaa uuden kuvan, johon on lisätty vieraillut solmut ja löydetty reitti.
 
