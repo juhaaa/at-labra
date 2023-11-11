@@ -1,4 +1,4 @@
-from tkinter import IntVar, Frame, Button, Radiobutton, Label, Entry
+from tkinter import IntVar, Frame, Button, Radiobutton, Label, Toplevel
 from tkinter import filedialog, Tk
 from PIL import ImageTk, Image, ImageDraw
 from main_service import start_route_search
@@ -18,20 +18,12 @@ class UI:
       
     def initialize_gui(self):
         self.master.title("Reitinhaku")
-        self.master.minsize(1100, 900)
+        self.master.minsize(500, 500)
         self.master.config(bg="goldenrod")
+        self.algorithm.set(-1)
         self.toolbar_init()
         self.map_init()
-        self.algorithm.set(-1)
-        self.toolbar.pack(side="left", fill="x", expand=True, padx=10, pady=5)
-        self.map.pack(side="right", padx=10, pady=10)
-        self.start_button.pack(ipady= 10, ipadx=2, padx=10, pady=5)
-        self.radio1.pack(ipady= 13, padx=10, pady=5)
-        self.radio2.pack(ipady= 13, padx=10, pady=5)
-        self.map_button.pack(ipady= 10, ipadx=2, padx=10, pady=5)
-        self.start_entry.pack(ipady= 10, ipadx=2, padx=10, pady=5)
-        self.finish_entry.pack(ipady= 10, ipadx=2, padx=10, pady=5)
-        self.image.pack()
+        
         
     def toolbar_init(self):
         self.toolbar = Frame(self.master, bg="goldenrod")
@@ -72,20 +64,39 @@ class UI:
             bd = 0,
             width = 30,
             activebackground="lemonchiffon3")
-        self.start_entry = Entry(self.toolbar, width=30)
-        self.finish_entry = Entry(self.toolbar, width=30)
+        self.start_entry = Label(self.toolbar, width=30, bg="goldenrod", fg="green", font="HELVETICA")
+        self.finish_entry = Label(self.toolbar, width=30, bg="goldenrod", fg="red", font="HELVETICA")
+        self.coordinates_label = Label(self.toolbar, text="Koordinaatit: (0, 0)", width= 30, bg="goldenrod")
+        self.toolbar.pack(side="left", fill="x", expand=True, padx=10, pady=5)
+        self.start_button.pack(ipady= 10, ipadx=2, padx=10, pady=5)
+        self.radio1.pack(ipady= 13, padx=10, pady=5)
+        self.radio2.pack(ipady= 13, padx=10, pady=5)
+        self.map_button.pack(ipady= 10, ipadx=2, padx=10, pady=5)
+        self.start_entry.pack(ipady= 10, ipadx=2, padx=10, pady=0)
+        self.finish_entry.pack(ipady= 10, ipadx=2, padx=10, pady=0)
+        self.coordinates_label.pack(ipady= 10, ipadx=2, padx=10, pady=5)
         
     def map_init(self):
-        self.map = Frame(self.master, bg="goldenrod")
+        self.toplevel = Toplevel(self.master)
+        self.toplevel.config(bg="goldenrod")
+        self.map = Frame(self.toplevel, bg="goldenrod")
         self.image = Label(self.map, bg="goldenrod")
         self.image.bind("<Button-1>", self.coordinates_click)
+        self.image.bind("<Motion>", self.show_hovered_coordinates)
+        self.image.bind("<Leave>", self.clear_hovered_coordinates)
+        self.map.pack(side="right", padx=10, pady=10)
+        self.image.pack()
 
     def choose_image(self):
         file_path = filedialog.askopenfilename(initialdir=map_dir_path,filetypes=[("Png", "*.png")])
         if file_path:
             self.img = Image.open(file_path)
             self.photo_img = ImageTk.PhotoImage(self.img)
-            self.image.config(image=self.photo_img)
+            if self.toplevel.winfo_exists():
+                self.image.config(image=self.photo_img)
+            else:
+                self.map_init()
+                self.image.config(image=self.photo_img)
             self.binary_grid = binary_map_to_matrix(self.img)
         
     def coordinates_click(self, event):
@@ -94,16 +105,22 @@ class UI:
             self.start_coords = (x, y)
             print(f"Alku: ({x}, {y})")
             self.is_selecting_start = False
-            self.start_entry.delete(0, 'end') 
-            self.start_entry.insert(0, f"Alku: ({x}, {y})") 
+            self.start_entry.config(text=f"Alku: ({x}, {y})") 
         else:
             self.finish_coords = (x, y)
             print(f"Loppu: ({x}, {y})")
             self.draw_coordinates(self.start_coords, "green", self.finish_coords, "red")
             self.is_selecting_start = True
-            self.finish_entry.delete(0, 'end')
-            self.finish_entry.insert(0, f"Loppu: ({x}, {y})")
-        
+            self.finish_entry.config(text=f"Loppu: ({x}, {y})")
+    
+    def show_hovered_coordinates(self, event):
+        x, y = event.x, event.y
+        coordinates_text = f"Koordinaatit: ({x}, {y})"
+        self.coordinates_label.config(text=coordinates_text)
+    
+    def clear_hovered_coordinates(self, event):
+        self.coordinates_label.config(text="Ei alueella")
+
     
     def insert_coordinates():
         #koordinaatit käsin syötettynä
