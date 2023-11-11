@@ -1,5 +1,3 @@
-import PIL
-
 def binary_map_to_matrix(map):
     
     binary_grid = []
@@ -13,9 +11,5 @@ def binary_map_to_matrix(map):
             else:
                 row.append(1)
         binary_grid.append(row)
-
-    print(len(binary_grid[0]))
-    print(len(binary_grid))
-    print(binary_grid)
 
     return binary_grid

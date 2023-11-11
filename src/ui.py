@@ -134,12 +134,21 @@ class UI:
         self.photo_img = ImageTk.PhotoImage(img_with_coords)
         self.image.config(image=self.photo_img)
 
+    def draw_path(self, path, result):
+        path_xy = [(col, row) for row, col in path]
+        img_with_path = self.img.copy()
+        draw = ImageDraw.Draw(img_with_path)
+        if result == float("inf"):
+            x, y = img_with_path.size
+            x = x/2-20
+            y= y/2
+            draw.text(xy=(x,y), text="Ei ratkaisua", fill="red", anchor="ms")
+        else:
+            draw.line(path_xy, fill="blue", width=5, joint="curve")
+        self.photo_img = ImageTk.PhotoImage(img_with_path)
+        self.image.config(image=self.photo_img)
+        
     def start_program(self):
         print(self.start_coords, self.finish_coords)
-        print(self.algorithm.get())
-        start_route_search(self.algorithm, self.start_coords, self.finish_coords)
-
-if __name__ == "__main__":
-    root = Tk()
-    ui = UI(root)
-    root.mainloop()
+        self.result, path, visited= start_route_search(self.algorithm.get(), self.start_coords, self.finish_coords, self.binary_grid)
+        self.draw_path(path, self.result)
