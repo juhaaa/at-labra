@@ -55,9 +55,18 @@ class UI:
             activebackground="lemonchiffon3")
         self.radio2 = Radiobutton(
             self.toolbar,
-            text="JPS",
+            text="A*",
             variable=self.algorithm,
             value=2, bg="lemonchiffon2",
+            highlightthickness = 0,
+            bd=0,
+            width=30,
+            activebackground="lemonchiffon3")
+        self.radio3 = Radiobutton(
+            self.toolbar,
+            text="JPS",
+            variable=self.algorithm,
+            value=3, bg="lemonchiffon2",
             highlightthickness = 0,
             bd=0,
             width=30,
@@ -89,6 +98,7 @@ class UI:
         self.start_button.pack(ipady= 10, ipadx=2, padx=10, pady=5)
         self.radio1.pack(ipady= 13, padx=10, pady=5)
         self.radio2.pack(ipady= 13, padx=10, pady=5)
+        self.radio3.pack(ipady= 13, padx=10, pady=5)
         self.map_button.pack(ipady= 10, ipadx=2, padx=10, pady=5)
         self.start_entry.pack(ipady= 10, ipadx=2, padx=10, pady=0)
         self.finish_entry.pack(ipady= 10, ipadx=2, padx=10, pady=0)

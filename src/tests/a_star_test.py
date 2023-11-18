@@ -1,10 +1,10 @@
 import unittest
 from PIL import Image
 from map_service import binary_map_to_matrix
-from dijkstra import Dijkstra
+from a_star import AStar
 import math
 
-class TestDijkstra(unittest.TestCase):
+class TestAStar(unittest.TestCase):
     def setUp(self):
         # 10x10px kuva jonka halkaisee horisontaalisesti musta "este"
         # Muodostetaan kuvasta matriisi
@@ -25,32 +25,33 @@ class TestDijkstra(unittest.TestCase):
         # Testataan yksi diagonaalisiirtymä arvoltaan sqrt(2)
         start = (0, 9)
         finish = (1, 8)
-        dijkstra_d = Dijkstra(self.grid, start, finish)
-        dist = dijkstra_d.run()[0]
+        a_star_d = AStar(self.grid, start, finish)
+        dist = a_star_d.run()[0]
         self.assertEqual(round(math.sqrt(2),2), dist)
         # Alku ja loppu käännettynä
-        dijkstra_d = Dijkstra(self.grid, finish, start)
-        dist = dijkstra_d.run()[0]
+        a_star_d = AStar(self.grid, finish, start)
+        dist = a_star_d.run()[0]
+        print(round(math.sqrt(2),2))
         self.assertEqual(round(math.sqrt(2),2), dist)
 
     def test_correct_distance_orthogonal(self):
         # Testataan kolmen siirtymä sivuttain arvoltaan 3
         start = (0, 9)
         finish = (3, 9)
-        dijkstra_o = Dijkstra(self.grid, start, finish)
-        dist = dijkstra_o.run()[0]
+        a_star_o = AStar(self.grid, start, finish)
+        dist = a_star_o.run()[0]
         self.assertEqual(3, dist)
         # Käännettynä
-        dijkstra_o = Dijkstra(self.grid, finish, start)
-        dist = dijkstra_o.run()[0]
+        a_star_o = AStar(self.grid, finish, start)
+        dist = a_star_o.run()[0]
         self.assertEqual(3, dist)
 
     def test_not_found(self):
         # Testataan tilanne, jossa reittiä ei ole
         start = (0, 9)
         finish = (9, 0)
-        dijkstra_inf = Dijkstra(self.grid, start, finish)
-        dist = dijkstra_inf.run()[0]
+        a_star_inf = AStar(self.grid, start, finish)
+        dist = a_star_inf.run()[0]
         self.assertEqual(float("inf"), dist)
 
     def test_length_of_path(self):
@@ -58,8 +59,8 @@ class TestDijkstra(unittest.TestCase):
         # Mukana aloitus-solmu
         start = (0, 9)
         finish = (3, 9)
-        dijkstra_p = Dijkstra(self.grid, start, finish)
-        path= dijkstra_p.run()[1]
+        a_star_p = AStar(self.grid, start, finish)
+        path= a_star_p.run()[1]
         self.assertEqual(4, len(path))
 
     def test_correct_nodes_in_path(self):
@@ -67,7 +68,7 @@ class TestDijkstra(unittest.TestCase):
         start = (0, 9)
         finish = (3, 9)
         correct_nodes = [(3, 9), (2, 9), (1, 9), (0, 9)]
-        dijkstra_p = Dijkstra(self.grid, start, finish)
-        path= dijkstra_p.run()[1]
+        a_star_p = AStar(self.grid, start, finish)
+        path= a_star_p.run()[1]
         for node in correct_nodes:
             self.assertIn(node, path)
