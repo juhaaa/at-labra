@@ -1,4 +1,12 @@
 def binary_map_to_matrix(map):
+    """Funktio muuttaa Photoimage- olion binäärimatriisiksi
+
+    Args:
+        map (PhotoImage): png - kartta PhotoImage- oliona
+
+    Returns:
+        list: binäärimatriisi
+    """
     
     binary_grid = []
     img = map.convert("L") 
