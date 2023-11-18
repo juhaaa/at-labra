@@ -1,4 +1,4 @@
-from algo import dijkstra
+from dijkstra import Dijkstra
 
 def start_route_search(algo, start, finish, grid):
     """Funktio valitun algoritmin suorittamiseen
@@ -10,10 +10,12 @@ def start_route_search(algo, start, finish, grid):
         grid (list): matriisikartta
 
     Returns:
-        _type_: _description_
+        Float: result
+        List: path, lista tupleja
+        List: visited, matriisi vierailluista solmuista
     """
     if algo == 1:
-        result, path, visited = dijkstra(grid, start, finish)
-        for row in path:
-            print(row)
+        dijkstra = Dijkstra(grid, start, finish)
+        result, path, visited = dijkstra.run()
+        print(result)
     return result, path, visited

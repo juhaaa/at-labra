@@ -5,6 +5,16 @@ from map_service import binary_map_to_matrix
 class TestMapService(unittest.TestCase):
     def setUp(self):
         # 10x10px kuva jossa mustaa kuten identiteettimatriissa
+        #[[1,0,0,0,0,0,0,0,0,0],
+        #[0,1,0,0,0,0,0,0,0,0],
+        #[0,0,1,0,0,0,0,0,0,0]
+        #[0,0,0,1,0,0,0,0,0,0]
+        #[0,0,0,0,1,0,0,0,0,0]
+        #[0,0,0,0,0,1,0,0,0,0]
+        #[0,0,0,0,0,0,1,0,0,0]
+        #[0,0,0,0,0,0,0,1,0,0]
+        #[0,0,0,0,0,0,0,0,1,0]
+        #[0,0,0,0,0,0,0,0,0,1]]
         self.png_image = Image.open("src/tests/test_img/diag.png")
         self.result = binary_map_to_matrix(self.png_image)
         self.amount = 0
